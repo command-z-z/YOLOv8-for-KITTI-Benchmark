@@ -16,7 +16,7 @@ def get_args():
     parser.add_argument('--kitti_classes', type=str, default='kitti_classes.json')
     parser.add_argument('--train_split_path', type=str, default='kitti_splits/train_split.txt')
     parser.add_argument('--val_split_path', type=str, default='kitti_splits/val_split.txt')
-    parser.add_argument('--type', type=str, default='train', choices=['preprocess', 'train', 'evaluate', 'predict'])
+    parser.add_argument('--type', type=str, default='train', choices=['preprocess', 'train', 'evaluate', 'predict', 'export'])
     parser.add_argument('--weight', type=str, default='./yolov8x-kitti-clean/train/weights/best.pt')
     args = parser.parse_args()
     args.base_dir = Path(args.base_dir)
@@ -47,7 +47,7 @@ def get_args():
 def train():
     model = YOLO('yolov8x.yaml')
     model = YOLO('yolov8x.pt')
-    train_results = model.train(
+    _ = model.train(
         data='kitti.yaml', 
         epochs=50,
         patience=50,
@@ -59,14 +59,19 @@ def train():
 
 
 def evaluate():
-    model = YOLO(args.weight)  # 加载自定义模型
-    valid_results = model.val()
+    model = YOLO(args.weight)
+    _ = model.val()
 
 def predict():
-    model = YOLO(args.weight)  # 加载自定义模型
+    model = YOLO(args.weight)
     img_paths_chunks = np.array_split(args.test_ims, len(args.test_ims) // 16)
     for img_paths in tqdm(img_paths_chunks):
-        preds = model.predict(img_paths.tolist(), conf=0.5, save=True, save_conf=True, save_txt=True)
+        _ = model.predict(img_paths.tolist(), conf=0.5, save=True, save_conf=True, save_txt=True)
+
+def export():
+    model = YOLO(args.weight)
+    model.export(format='engine')
+
 
 def preprocess(args):
     train_path = Path('train').resolve()
@@ -104,3 +109,5 @@ if __name__ == '__main__':
         evaluate()
     elif args.type == "predict":
         predict()
+    elif args.type == "export":
+        export()
