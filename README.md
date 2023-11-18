@@ -52,14 +52,14 @@ After this, we will get a `train` folder containing training images and labels. 
 
 #### 4. Trained model
 
-Download the trained model from [YOLOV8-KITTI](https://pan.baidu.com/s/1JcBUJ1wX43EOcV1ZtJa5eQ?pwd=7wq1) (Pretrained on yolov8x.) if you need.
+Download the trained model from [YOLOV8-KITTI](https://pan.baidu.com/s/1JcBUJ1wX43EOcV1ZtJa5eQ?pwd=7wq1) (Pretrained on yolov8x.pt) if you need.
 
 Put it into `./best.pt`.
 
 ## Training and Evaluation
 
 ### Training
-Use the following command to train a object detection model on KITTI. It will download some pretrained model(yolov8x), please wait a minute.
+Use the following command to train a object detection model on KITTI. It will download some pretrained model(yolov8x.pt), please wait a minute.
 ```
 python main.py --type train
 ```
@@ -69,7 +69,7 @@ After trained, it will create a `yolov8x-kitti-clean` folder, which contained th
 
 
 ### Evaluation
-Use the following command to evaluate a object detection model on KITTI. You can also download the trained model from [this section](#4.-trained-model).
+Use the following command to evaluate a object detection model on KITTI. You can download the trained model from [this section](#4.-trained-model).
 ```
 python main.py --type evaluate --weight your/model/path/best.pt
 ```
@@ -87,12 +87,12 @@ Speed: 0.0ms preprocess, 6.0ms inference, 0.0ms loss, 0.3ms postprocess per imag
 ```
 
 <div style="display: flex; justify-content: space-between;">
-    <img src="./img/R_curve.png" alt="Image 1" width="48%">
-    <img src="./img/P_curve.png" alt="Image 2" width="48%">
+    <img src="./img/R_curve.png" alt="Image 1" style="width: 49%; margin-left: 5px;">
+    <img src="./img/P_curve.png" alt="Image 2" style="width: 49%; margin-right: 5px;">
 </div>
 
 ### Prediction
-Use the following command to  a object detection model on KITTI. You can also download the trained model from [this section](#4.-trained-model).
+Use the following command to predict the test set on KITTI using the trained model. You can download the trained model from [this section](#4.-trained-model).
 
 ```
 python main.py --type predict --weight your/model/path/best.pt
