@@ -56,7 +56,7 @@ Download the trained model from [YOLOV8-KITTI](https://pan.baidu.com/s/1JcBUJ1wX
 
 Put it into `./best.pt`.
 
-## Training and Evaluation
+## Training and Evaluation, etc
 
 ### Training
 Use the following command to train a object detection model on KITTI. It will download some pretrained model(yolov8x.pt), please wait a minute.
@@ -99,8 +99,17 @@ python main.py --type predict --weight your/model/path/best.pt
 ```
 All result images and labels saved in `./runs/detect/predict` folder.
 
+### Export
+Use the following command to export the TensorRT model. You can download the trained model from [this section](#4.-trained-model).
+
+```
+python main.py --type export --weight your/model/path/best.pt
+```
+Will get the result model, such as `best.onnx` and `best.engine`.
+
 ## Citation
 
 For additional resources and information, please see the links below:
 - [KITTI](https://www.cvlibs.net/datasets/kitti/eval_object.php?obj_benchmark=3d)
 - [YOLOv8](https://docs.ultralytics.com/zh/)
+- [My Repo](https://github.com/command-z-z/YOLOv8-for-KITTI-Benchmark)
