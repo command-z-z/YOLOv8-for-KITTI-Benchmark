@@ -69,7 +69,7 @@ After trained, it will create a `yolov8x-kitti-clean` folder, which contained th
 
 
 ### Evaluation
-Use the following command to evaluate a object detection model on KITTI. You can download the trained model from [this section](#4.-trained-model).
+Use the following command to evaluate a object detection model on KITTI. You can download the trained model from [this section](#4-trained-model).
 ```
 python main.py --type evaluate --weight your/model/path/best.pt
 ```
@@ -92,7 +92,7 @@ Speed: 0.0ms preprocess, 6.0ms inference, 0.0ms loss, 0.3ms postprocess per imag
 </div>
 
 ### Prediction
-Use the following command to predict the test set on KITTI using the trained model. You can download the trained model from [this section](#4.-trained-model).
+Use the following command to predict the test set on KITTI using the trained model. You can download the trained model from [this section](#4-trained-model).
 
 ```
 python main.py --type predict --weight your/model/path/best.pt
@@ -100,7 +100,7 @@ python main.py --type predict --weight your/model/path/best.pt
 All result images and labels saved in `./runs/detect/predict` folder.
 
 ### Export
-Use the following command to export the TensorRT model. You can download the trained model from [this section](#4.-trained-model).
+Use the following command to export the TensorRT model. You can download the trained model from [this section](#4-trained-model).
 
 ```
 python main.py --type export --weight your/model/path/best.pt
